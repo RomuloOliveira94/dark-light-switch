@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark-Light</title>
+
+    <style>
+        .theme-light{
+            --text-color: rgb(19,17,17);
+            --bg-color: rgb(228,213,213);
+            --primary-text: rgb(164,192,230) ;
+            --secondary-text: hsl(288,87%,85%)  ;
+            --primary-bg: hsl(216,91%,35%) ;
+            --secondary-bg: hsl(290,84%,22%);
+        }
+        .theme-dark{
+            --text-color: rgb(242,233,233);
+            --bg-color: rgb(24,22,22);
+            --primary-text: rgb(12,11,11) ;
+            --secondary-text: hsl(289,18%,12%)  ;
+            --primary-bg: hsl(166,46%,65%) ;
+            --secondary-bg: hsl(289,21%,69%);
+        }
+        body{
+            font-family: sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        .btn{
+            padding: 1em;
+            display: inline-block;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn-primary{
+            color: var(--primary-text);
+            background-color: var(--primary-bg);
+        }
+        .btn-secondary{
+            color: var(--secondary-text);
+            background-color: var(--secondary-bg);
+        }
+
+    </style>
+</head>
+<body>
+
+    <input type="radio" name="theme" id="theme-dark" class="theme-switch" value="dark">
+    <label for="theme-dark">Dark</label>
+
+    <input type="radio" name="theme" id="theme-light" class="theme-switch" value="light">
+    <label for="theme-light">Light</label>
+
+    <h1>Dark / Light Mode</h1>
+
+    <a href="#" class="btn btn-primary"> Link com aparência de botão</a>
+    <a href="#" class="btn btn-secondary"> Link com aparência de botão</a>
+
+    <script>
+
+        const themeSwitch = document.querySelectorAll('.theme-switch')
+        const body = document.querySelector("body")
+        const initialTheme = 'theme-light'
+        body.classList.add(initialTheme)
+        document.querySelector(`#${initialTheme}`).checked = true
+
+        function toggleTheme(e){
+            const body = document.querySelector("body")
+            const theme = this.value
+            body.classList.remove('theme-light','theme-dark')
+            body.classList.add(`theme-${theme}`)
+        }
+
+        Array.from(themeSwitch).forEach(radio => radio.addEventListener('change', toggleTheme))
+
+    </script>
+
+</body>
+</html>
